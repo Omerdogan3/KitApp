@@ -2,17 +2,27 @@ import React, { Component } from 'react';
 import {
   ScrollView,
   StyleSheet,
-  View
+  View,
+  Dimensions,
+  Button,
+  Platform
 } from 'react-native';
 import { movies } from './data';
 import MoviePoster from './MoviePoster';
 import MoviePopup from './MoviePopup';
+import SearchInput, { createFilter } from 'react-native-search-filter';
+const KEYS_TO_FILTERS = ['title', 'genre'];
 
 export default class Movies extends Component {
   state = {
     popupIsOpen: false,
+    searchTerm: ''
   }
 
+  searchUpdated(term) {
+    this.setState({ searchTerm: term })
+  }
+  
   openMovie = (movie) => {
     this.setState({
       popupIsOpen: true,
@@ -26,15 +36,22 @@ export default class Movies extends Component {
     });
   }
   render() {
+    const filteredMovies = movies.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
+
     return (
       <View style={styles.container}>
+        <SearchInput 
+            onChangeText={(term) => { this.searchUpdated(term) }} 
+            style={styles.searchInput}
+            placeholder="Aramak istediginiz kitap, tur, yazar ismi"
+        />
         <ScrollView
           contentContainerStyle={styles.scrollContent}
 		  // Hide all scroll indicators
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
         >
-          {movies.map((movie, index) => <MoviePoster
+          {filteredMovies.map((movie, index) => <MoviePoster
             movie={movie}
             onOpen={this.openMovie}
             key={index}
@@ -52,10 +69,18 @@ export default class Movies extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,         // start below status bar
+    paddingTop: 5,         // start below status bar
+    justifyContent: 'flex-start'
   },
   scrollContent: {
     flexDirection: 'row',   // arrange posters in rows
     flexWrap: 'wrap',       // allow multiple rows
   },
+  searchInput:{
+        borderColor: '#CCC',
+        borderWidth: 1,
+        width: Dimensions.get('window').width,
+        marginBottom: 5,
+        // marginTop: Platform.OS === 'ios' ? 10 : 0
+  }
 });
