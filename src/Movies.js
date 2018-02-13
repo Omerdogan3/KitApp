@@ -70,17 +70,18 @@ export default class Movies extends Component {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 5,         // start below status bar
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    marginTop: Platform.OS === 'ios' ? 10 : 0,
   },
   scrollContent: {
     flexDirection: 'row',   // arrange posters in rows
     flexWrap: 'wrap',       // allow multiple rows
   },
   searchInput:{
-        borderColor: '#CCC',
-        borderWidth: 1,
-        width: Dimensions.get('window').width,
-        marginBottom: 5,
-        // marginTop: Platform.OS === 'ios' ? 10 : 0
+    borderColor: '#CCC',
+    borderWidth: 1,
+    width: Dimensions.get('window').width,
+    marginBottom: 5,
+    
   }
 });
