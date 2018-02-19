@@ -31,6 +31,8 @@ export default class MoviePopup extends Component {
     expanded: false,
     // Visibility flag
     visible: this.props.isOpen,
+
+    movie: this.props.movie
   };
 
   // When user starts pulling popup previous height gets stored here
