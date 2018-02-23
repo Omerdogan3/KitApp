@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import {
   View, Text, StyleSheet, Button
 } from 'react-native';
-// import {
-//   RkText,
-//   RkCard,
-//   RkButton,
-//   RkStyleSheet,
-//   RkTheme
-// } from 'react-native-ui-kitten';
 import {kitapYurdu} from './sepetData';
 import SepetUrun from './SepetUrun';
 

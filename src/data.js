@@ -12,6 +12,7 @@ export const movies = [
     genre: 'Tarih',
     days,
     times,
+    ISBN: 9752430297
   },
   {
     title: 'Saklı Seçilmişler Siz Onları Değil, Onlar Sizi Seçti',
@@ -19,6 +20,7 @@ export const movies = [
     genre: 'Araştırma-İnceleme',
     days,
     times,
+    ISBN: 6052981900
   },
   {
     title: 'Dirilt Kalbini',
@@ -33,6 +35,14 @@ export const movies = [
     genre: 'Roman',
     days,
     times,
+  },
+  {
+    title: 'Sivil İtaatsizlik',
+    poster: 'http://imageserver.kitapyurdu.com/select.php?imageid=1107240',
+    genre: 'Siyaset Felsefesi',
+    days,
+    times,
+    ISBN: 6050204681
   },
   {
     title: 'Yuval Noah Harari Set (Sapiens / Homo Deus) (Ciltli)',

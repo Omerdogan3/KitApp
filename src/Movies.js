@@ -11,8 +11,10 @@ import MoviePoster from './MoviePoster';
 import MoviePopup from './MoviePopup';
 import SearchInput, { createFilter } from 'react-native-search-filter';
 import {Header,Icon,Input, Item,Button,Text} from 'native-base';
+import {TouchableHighlight} from 'react-native';
+import FontAwesome, { Icons } from 'react-native-fontawesome';
 
-const KEYS_TO_FILTERS = ['title', 'genre'];
+const KEYS_TO_FILTERS = ['title', 'genre', 'ISBN'];
 
 export default class Movies extends Component {
   state = {
@@ -40,19 +42,22 @@ export default class Movies extends Component {
     const filteredMovies = movies.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
     return (
       <View style={styles.container}>
-        <Header searchBar rounded style={styles.searchInput}>
+        <View searchBar rounded style={styles.searchInput}>
           <Item >
-            <Input placeholder="Aramak istediginiz kitap, tur, yazar ismi" 
-                    onChangeText={(term) => { this.searchUpdated(term) }} 
-            />     
+            <Input placeholder="Aramak istediginiz Kitap, tur, yazar ismi" 
+                    onChangeText={(term) => { this.searchUpdated(term)}} 
+            />
+            <View>
+              <TouchableHighlight>
+                <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}> 
+                  Tara
+                </Text>
+              </TouchableHighlight>
+            </View>
         </Item>
-        <Button>
-          <Text>Search</Text>
-        </Button>
-      </Header>  
+
         
-
-
+      </View>  
 
         <ScrollView
           contentContainerStyle={styles.scrollContent}
@@ -87,7 +92,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',       // allow multiple rows
   },
   searchInput:{
-    width: Dimensions.get('window').width,
-    marginBottom: 5,
+    width: Dimensions.get('window').width
   }
 });

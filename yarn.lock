@@ -3867,6 +3867,13 @@ react-native-branch@2.0.0-beta.3:
   version "2.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.0.0-beta.3.tgz#2167af86bbc9f964bd45bd5f37684e5b54965e32"
 
+react-native-camera@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.0.1.tgz#ebb131226394b4ee3ec6692979a257522b3ac0c1"
+  dependencies:
+    lodash "^4.17.4"
+    prop-types "^15.5.10"
+
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-dismiss-keyboard/-/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"
@@ -3895,6 +3902,10 @@ react-native-easy-grid@0.1.17:
   resolved "https://registry.yarnpkg.com/react-native-easy-grid/-/react-native-easy-grid-0.1.17.tgz#fad8cb371d465828c1c71daa4d8b513d33253452"
   dependencies:
     lodash "^4.11.1"
+
+react-native-fontawesome@^5.7.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-fontawesome/-/react-native-fontawesome-5.7.0.tgz#7bfe57c21c6522d05eaf206474903c3f299bfc0d"
 
 react-native-gesture-handler@1.0.0-alpha.39:
   version "1.0.0-alpha.39"
