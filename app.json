@@ -1,10 +1,4 @@
 {
-  "name": "MovieTickets",
-  "displayName": "MovieTickets",
-  "expo": {
-    "name": "MovieTickets",
-    "slug": "Movie-app",
-    "sdkVersion": "25.0.0",
-    "privacy": "public"
-  }
+  "name": "KitApp",
+  "displayName": "KitApp"
 }

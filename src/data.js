@@ -7,7 +7,7 @@ const times = [ '9:00 AM', '11:10 AM', '12:00 PM', '1:50 PM', '4:30 PM', '6:00 P
 
 export const movies = [
   {
-    title: 'Gazi Mustafa Kemal Atatürk',
+    title: 'Gazi1 Mustafa Kemal Atatürk',
     poster: 'http://imageserver.kitapyurdu.com/select.php?imageid=5193438&width=100&isWatermarked=true',
     genre: 'Tarih',
     days,
