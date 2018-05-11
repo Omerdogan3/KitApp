@@ -9,6 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "expo": "^25.0.0",
     "moment": "^2.20.1",
     "native-base": "^2.3.8",
@@ -25,6 +26,7 @@
     "jest": "22.2.2",
     "react-test-renderer": "16.2.0"
   },
+  "android-linux": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android",
   "jest": {
     "preset": "react-native"
   },

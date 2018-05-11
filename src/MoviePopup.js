@@ -39,7 +39,7 @@ export default class MoviePopup extends Component {
   // to help us calculate new height value during and after pulling
   _previousHeight = 0
 
-  componentWillMount() {
+  componentDidMount() {
     // Initialize PanResponder to handle move gestures
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => true,
@@ -117,7 +117,7 @@ export default class MoviePopup extends Component {
   }
 
   // Handle isOpen changes to either open or close popup
-  componentWillReceiveProps(nextProps) {
+  getDerivedStateFromProps(nextProps) {
     // isOpen prop changed to true from false
     if (!this.props.isOpen && nextProps.isOpen) {
       this.animateOpen();

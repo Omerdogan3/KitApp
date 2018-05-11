@@ -5,11 +5,15 @@ const days = [ 'Today', 'Tomorrow', moment().add(2, 'days').format('ddd, MMM D')
 // Same for times
 const times = [ '9:00 AM', '11:10 AM', '12:00 PM', '1:50 PM', '4:30 PM', '6:00 PM', '7:10 PM', '9:45 PM' ];
 
+
+
+
 export const movies = [
   {
     title: 'Gazi1 Mustafa Kemal Atatürk',
     poster: 'http://imageserver.kitapyurdu.com/select.php?imageid=5193438&width=100&isWatermarked=true',
     genre: 'Tarih',
+    author: 'Ilber Ortali',
     days,
     times,
     ISBN: 9752430297
@@ -18,6 +22,7 @@ export const movies = [
     title: 'Saklı Seçilmişler Siz Onları Değil, Onlar Sizi Seçti',
     poster: 'http://imageserver.kitapyurdu.com/select.php?imageid=5391420&width=100&isWatermarked=true',
     genre: 'Araştırma-İnceleme',
+    author: 'Soner Yalcin',
     days,
     times,
     ISBN: 6052981900
@@ -26,6 +31,7 @@ export const movies = [
     title: 'Dirilt Kalbini',
     poster: 'http://imageserver.kitapyurdu.com/select.php?imageid=4982713&width=100&isWatermarked=true',
     genre: 'Araştırma-İnceleme',
+    author: 'Author Test',
     days,
     times,
   },

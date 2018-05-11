@@ -4,7 +4,7 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  Platform
+  Platform,
 } from 'react-native';
 import { movies } from './data';
 import MoviePoster from './MoviePoster';
@@ -14,12 +14,30 @@ import {Header,Icon,Input, Item,Button,Text} from 'native-base';
 import {TouchableHighlight} from 'react-native';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 
+import axios from 'axios';
+
 const KEYS_TO_FILTERS = ['title', 'genre', 'ISBN'];
 
 export default class Movies extends Component {
   state = {
     popupIsOpen: false,
-    searchTerm: ''
+    searchTerm: '',
+    popularBooks: [],
+    isLoading: true
+  }
+
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    this.fetchData();
+  }
+
+  fetchData = async () => {
+    axios.get("http://localhost:8080/popular/:").then((res) => {   
+      const books = res.results; 
+      this.setState({
+        popularBooks: books
+      });
+    });
   }
 
   searchUpdated(term) {
@@ -41,41 +59,8 @@ export default class Movies extends Component {
   render() {
     const filteredMovies = movies.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
     return (
-      <View style={styles.container}>
-        <View searchBar rounded style={styles.searchInput}>
-          <Item >
-            <Input placeholder="Aramak istediginiz Kitap, tur, yazar ismi" 
-                    onChangeText={(term) => { this.searchUpdated(term)}} 
-            />
-            <View>
-              <TouchableHighlight>
-                <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}> 
-                  Tara
-                </Text>
-              </TouchableHighlight>
-            </View>
-        </Item>
-
-        
-      </View>  
-
-        <ScrollView
-          contentContainerStyle={styles.scrollContent}
-		  // Hide all scroll indicators
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-        >
-          {filteredMovies.map((movie, index) => <MoviePoster
-            movie={movie}
-            onOpen={this.openMovie}
-            key={index}
-          />)}
-        </ScrollView>
-        <MoviePopup
-          movie={this.state.movie}
-          isOpen={this.state.popupIsOpen}
-          onClose={this.closeMovie}
-        />
+      <View>
+      { this.state.popularBooks.map(book => <li>{book.title}</li>)}
       </View>
     );
   }
@@ -95,3 +80,18 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width
   }
 });
+
+
+
+// <ScrollView
+//           contentContainerStyle={styles.scrollContent}
+// 		  // Hide all scroll indicators
+//           showsHorizontalScrollIndicator={false}
+//           showsVerticalScrollIndicator={false}
+//         >
+//           {filteredMovies.map((movie, index) => <MoviePoster
+//             movie={movie}
+//             onOpen={this.openMovie}
+//             key={index}
+//           />)}
+//         </ScrollView>
