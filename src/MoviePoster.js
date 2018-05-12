@@ -16,12 +16,12 @@ const cols = 3, rows = 3;
 
 export default class MoviePoster extends Component {
   render() {
-    const { movie, movie: { title, genre, poster }, onOpen } = this.props;
+    const { movie, movie: { title, genre, image_link }, onOpen } = this.props;
 
     return (
       <TouchableOpacity style={styles.container} onPress={() => onOpen(movie)}>
         <View style={styles.imageContainer}>
-          <Image source={{ uri: poster }} style={styles.image} />
+          <Image source={{ uri: image_link }} style={styles.image} />
         </View>
         <Text style={styles.title} numberOfLines={1}>{title}</Text>
         <Text style={styles.genre} numberOfLines={1}>{genre}</Text>

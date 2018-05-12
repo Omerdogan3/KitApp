@@ -31,12 +31,16 @@ export default class Movies extends Component {
     this.fetchData();
   }
 
-  fetchData = async () => {
-    axios.get("http://localhost:8080/popular/:").then((res) => {   
-      const books = res.results; 
+  fetchData = () => {
+    return fetch('https://kitappapi.herokuapp.com/popular/:')
+    .then((response) => response.json())
+    .then((responseJson) => {
       this.setState({
-        popularBooks: books
-      });
+        popularBooks: responseJson.results
+      })
+    })
+    .catch((error) => {
+      console.error(error);
     });
   }
 
@@ -57,10 +61,46 @@ export default class Movies extends Component {
     });
   }
   render() {
-    const filteredMovies = movies.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
+    const filteredMovies = this.state.popularBooks.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
     return (
-      <View>
-      { this.state.popularBooks.map(book => <li>{book.title}</li>)}
+      <View style={styles.container}>
+
+
+      <View searchBar rounded style={styles.searchInput}>
+          <Item >
+            <Input placeholder="Aramak istediginiz Kitap, tur, yazar ismi" 
+                    onChangeText={(term) => { this.searchUpdated(term)}} 
+            />
+            <View>
+              <TouchableHighlight>
+                <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}> 
+                  Tara
+                </Text>
+              </TouchableHighlight>
+            </View>
+        </Item>
+
+        
+      </View>  
+
+
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+          >
+            {filteredMovies.map((movie, index) => 
+            <MoviePoster
+              movie={movie}
+              onOpen={this.openMovie}
+              key={index}
+            />)}
+          </ScrollView>
+          <MoviePopup
+          movie={this.state.movie}
+          isOpen={this.state.popupIsOpen}
+          onClose={this.closeMovie}
+        />
       </View>
     );
   }
@@ -83,15 +123,3 @@ const styles = StyleSheet.create({
 
 
 
-// <ScrollView
-//           contentContainerStyle={styles.scrollContent}
-// 		  // Hide all scroll indicators
-//           showsHorizontalScrollIndicator={false}
-//           showsVerticalScrollIndicator={false}
-//         >
-//           {filteredMovies.map((movie, index) => <MoviePoster
-//             movie={movie}
-//             onOpen={this.openMovie}
-//             key={index}
-//           />)}
-//         </ScrollView>

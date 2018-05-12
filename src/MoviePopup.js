@@ -39,7 +39,7 @@ export default class MoviePopup extends Component {
   // to help us calculate new height value during and after pulling
   _previousHeight = 0
 
-  componentDidMount() {
+  componentWillMount() {
     // Initialize PanResponder to handle move gestures
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => true,
@@ -117,7 +117,7 @@ export default class MoviePopup extends Component {
   }
 
   // Handle isOpen changes to either open or close popup
-  getDerivedStateFromProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     // isOpen prop changed to true from false
     if (!this.props.isOpen && nextProps.isOpen) {
       this.animateOpen();
@@ -203,7 +203,7 @@ export default class MoviePopup extends Component {
       onBook
     } = this.props;
     // Pull out movie data
-    const { title, genre, poster, days, times } = movie || {};
+    const { title, genre, image_link, days, times } = movie || {};
     // Render nothing if not visible
     if (!this.state.visible) {
       return null;
@@ -232,7 +232,7 @@ export default class MoviePopup extends Component {
             >
               {/* Poster */}
               <View style={[styles.imageContainer, this.getStyles().imageContainer]}>
-                <Image source={{ uri: poster }} style={styles.image} />
+                <Image source={{ uri: image_link }} style={styles.image} />
               </View>
               {/* Title and genre */}
               <View style={[styles.movieInfo, this.getStyles().movieInfo]}>
