@@ -39,7 +39,7 @@ export default class MoviePopup extends Component {
   // to help us calculate new height value during and after pulling
   _previousHeight = 0
 
-  componentWillMount() {
+  componentDidMount() {
     // Initialize PanResponder to handle move gestures
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => true,
@@ -203,7 +203,7 @@ export default class MoviePopup extends Component {
       onBook
     } = this.props;
     // Pull out movie data
-    const { title, genre, image_link, days, times } = movie || {};
+    const { title, author_name, image_link, days, times } = movie || {};
     // Render nothing if not visible
     if (!this.state.visible) {
       return null;
@@ -237,20 +237,20 @@ export default class MoviePopup extends Component {
               {/* Title and genre */}
               <View style={[styles.movieInfo, this.getStyles().movieInfo]}>
                 <Text style={[styles.title, this.getStyles().title]}>{title}</Text>
-                <Text style={styles.genre}>{genre}</Text>
+                <Text style={styles.genre}>{author_name}</Text>
               </View>
             </View>
 
             {/* Showtimes */}
             <View>
               {/* Day */}
-              <Text style={styles.sectionHeader}>Day</Text>
+              <Text style={styles.sectionHeader}>Yazar</Text>
               {/* TODO: Add day options here */}
-              <Text>Add day options here</Text>
+              <Text>{author_name}</Text>
               {/* Time */}
-              <Text style={styles.sectionHeader}>Showtime</Text>
+              <Text style={styles.sectionHeader}>Aciklama</Text>
               {/* TODO: Add show time options here */}
-              <Text>Add show time options here</Text>
+              <Text>Aciklama vs. buraya gelecek</Text>
             </View>
 
           </View>
@@ -262,7 +262,7 @@ export default class MoviePopup extends Component {
               style={styles.buttonContainer}
               onPress={onBook}
             >
-              <Text style={styles.button}>Sepete Ekle</Text>
+              <Text style={styles.button}>Fiyat Al</Text>
             </TouchableHighlight>
           </View>
 

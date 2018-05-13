@@ -13,6 +13,8 @@ import SearchInput, { createFilter } from 'react-native-search-filter';
 import {Header,Icon,Input, Item,Button,Text} from 'native-base';
 import {TouchableHighlight} from 'react-native';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
+import Swiper from 'react-native-swiper';
+import CardOne from './Components/CardOne';
 
 import axios from 'axios';
 
@@ -78,11 +80,18 @@ export default class Movies extends Component {
                 </Text>
               </TouchableHighlight>
             </View>
-        </Item>
-
-        
+        </Item>  
       </View>  
 
+      <Swiper
+					autoplay
+					autoplayTimeout={4}
+					showsPagination={false}
+					height={248}>
+					{filteredMovies.map(item => (
+						<CardOne key={item.ISBN} info={item}/>
+					))}
+				</Swiper>
 
       <ScrollView
         contentContainerStyle={styles.scrollContent}

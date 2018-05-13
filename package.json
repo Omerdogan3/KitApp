@@ -19,6 +19,7 @@
     "react-native-fontawesome": "^5.7.0",
     "react-native-linear-gradient": "^2.4.0",
     "react-native-search-filter": "^0.1.3",
+    "react-native-swiper": "^1.5.13",
     "react-navigation": "^1.0.3"
   },
   "devDependencies": {
